@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CatchUpp — Simple, private messaging</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+  .home-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 3rem;
+  }
+  .home-nav .actions { display: flex; gap: 0.75rem; }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 3rem 4rem;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  .hero-copy .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--teal-dark);
+    background: #e6f3f2;
+    padding: 0.3rem 0.7rem;
+    border-radius: 100px;
+    margin-bottom: 1.2rem;
+  }
+  .hero-copy h1 {
+    font-size: 3rem;
+    line-height: 1.08;
+    margin-bottom: 1.1rem;
+    letter-spacing: -0.02em;
+  }
+  .hero-copy h1 span { color: var(--teal); }
+  .hero-copy p.lead {
+    font-size: 1.08rem;
+    color: var(--slate);
+    max-width: 440px;
+    margin-bottom: 1.8rem;
+  }
+  .hero-copy .actions { display: flex; gap: 0.9rem; align-items: center; }
+
+  .hero-visual {
+    position: relative;
+    height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .thread-svg { width: 100%; max-width: 460px; }
+
+  .features {
+    background: var(--white);
+    border-top: 1px solid var(--mist);
+    border-bottom: 1px solid var(--mist);
+    padding: 3.5rem 3rem;
+  }
+  .features-grid {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .feature .num {
+    font-family: var(--font-mono);
+    color: var(--coral);
+    font-size: 0.85rem;
+    margin-bottom: 0.6rem;
+  }
+  .feature h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+  .feature p { color: var(--slate); font-size: 0.92rem; }
+
+  .home-footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--slate-light);
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 900px) {
+    .home-nav { padding: 1.25rem 1.5rem; }
+    .hero { grid-template-columns: 1fr; padding: 1.5rem 1.5rem 3rem; text-align: center; }
+    .hero-copy p.lead { margin: 0 auto 1.8rem; }
+    .hero-copy .actions { justify-content: center; }
+    .hero-visual { height: 300px; order: -1; }
+    .features { padding: 2.5rem 1.5rem; }
+    .features-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+    .hero-copy h1 { font-size: 2.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="home-nav">
+  <span class="wordmark"><span class="wordmark-dot"></span>CatchUp</span>
+  <nav class="actions">
+    <a href="/login" class="btn btn-ghost btn-sm">Log in</a>
+    <a href="/register" class="btn btn-primary btn-sm">Sign up</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">No phone verification needed</span>
+    <h1>Private chats, <span>one thread</span><br>at a time.</h1>
+    <p class="lead">CatchUp is a simple way to message the people you actually talk to. Add a friend with their number, accept the request, and start chatting — that's it.</p>
+    <div class="actions">
+      <a href="/register" class="btn btn-primary">Create an account</a>
+      <a href="/login" class="btn btn-ghost">Log in</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <svg class="thread-svg" viewBox="0 0 460 420" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#16213D" flood-opacity="0.12"/>
+        </filter>
+      </defs>
+
+      <!-- connecting thread -->
+      <path d="M 90 90 C 180 150, 280 270, 370 330" stroke="#D9E0E3" stroke-width="2.5" stroke-dasharray="2 10" stroke-linecap="round" fill="none"/>
+
+      <!-- avatar A -->
+      <circle cx="90" cy="90" r="34" fill="#0E7C7B" filter="url(#soft-shadow)"/>
+      <text x="90" y="97" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="22" fill="#FAF9F6">AL</text>
+
+      <!-- avatar B -->
+      <circle cx="370" cy="330" r="34" fill="#FF6B5E" filter="url(#soft-shadow)"/>
+      <text x="370" y="337" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="22" fill="#FAF9F6">BO</text>
+
+      <!-- bubble near A -->
+      <rect x="130" y="55" width="150" height="54" rx="16" fill="#FFFFFF" filter="url(#soft-shadow)"/>
+      <text x="150" y="78" font-family="Inter, sans-serif" font-size="13" fill="#16213D">hey, you free to</text>
+      <text x="150" y="96" font-family="Inter, sans-serif" font-size="13" fill="#16213D">talk later?</text>
+
+      <!-- bubble near B -->
+      <rect x="150" y="240" width="160" height="54" rx="16" fill="#0E7C7B" filter="url(#soft-shadow)"/>
+      <text x="168" y="263" font-family="Inter, sans-serif" font-size="13" fill="#FAF9F6">yep — call me</text>
+      <text x="168" y="281" font-family="Inter, sans-serif" font-size="13" fill="#FAF9F6">at 7</text>
+
+      <!-- small online dot on avatar A -->
+      <circle cx="113" cy="113" r="7" fill="#2BB673" stroke="#FAF9F6" stroke-width="2.5"/>
+      <circle cx="393" cy="353" r="7" fill="#2BB673" stroke="#FAF9F6" stroke-width="2.5"/>
+    </svg>
+  </div>
+</section>
+
+<section class="features">
+  <div class="features-grid">
+    <div class="feature">
+      <div class="num">01</div>
+      <h3>No OTP, no waiting</h3>
+      <p>Register with a phone number as your unique ID — no SMS codes required to get started.</p>
+    </div>
+    <div class="feature">
+      <div class="num">02</div>
+      <h3>You control who can reach you</h3>
+      <p>Your number stays private. People can find you with it, but no one sees it on your profile.</p>
+    </div>
+    <div class="feature">
+      <div class="num">03</div>
+      <h3>Real-time, one-to-one</h3>
+      <p>Messages arrive instantly. No groups, no noise — just the conversation you're actually having.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="home-footer">
+  CatchUp — a simple messaging platform.
+
+</body>
+</html>

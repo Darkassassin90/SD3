@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat — CatchUp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="app-shell show-main" id="app-shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <span class="wordmark"><span class="wordmark-dot"></span>CatchUp</span>
+      <div class="profile-card">
+        <div class="avatar lg" id="sidebar-avatar">--</div>
+        <div class="profile-meta">
+          <div class="name" id="sidebar-name">—</div>
+          <div class="sub" id="sidebar-phone">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-tabs">
+      <div class="sidebar-tab active" data-tab="friends">Friends</div>
+      <div class="sidebar-tab" data-tab="requests">
+        Requests
+        <span class="badge" id="requests-badge"></span>
+      </div>
+    </div>
+
+    <div class="sidebar-search">
+      <div class="field" style="margin-bottom:0.4rem;">
+        <input type="text" id="search-phone" class="is-mono" inputmode="numeric" placeholder="Search by 11-digit phone number" maxlength="11">
+      </div>
+      <div id="search-result"></div>
+    </div>
+
+    <div class="sidebar-list" id="panel-friends">
+      <div id="friend-list"><div class="empty-note">Loading friends…</div></div>
+    </div>
+
+    <div class="sidebar-list" id="panel-requests" style="display:none;">
+      <div id="request-list"><div class="empty-note">Loading requests…</div></div>
+    </div>
+
+    <div class="sidebar-footer">
+      <button class="btn btn-ghost btn-block btn-sm" id="logout-btn">Log out</button>
+    </div>
+  </aside>
+
+  <main class="main-panel" id="main-panel">
+    <!-- Filled in by chat.js once we know which friend is selected -->
+  </main>
+
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/sidebar.js"></script>
+<script src="/js/chat.js"></script>
+</body>
+</html>

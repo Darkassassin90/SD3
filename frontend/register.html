@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create your account — CatchUp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="auth-shell">
+  <div class="auth-form-side" style="position:relative;">
+    <div class="top-bar">
+      <a href="/" class="wordmark"><span class="wordmark-dot"></span>CatchUp</a>
+    </div>
+
+    <div class="auth-card">
+      <h1>Create your account</h1>
+      <p class="auth-subtitle">Just a phone number, a username, and a password. No verification code needed.</p>
+
+      <div class="form-error" id="form-error"></div>
+
+      <form id="register-form" novalidate>
+        <div class="field">
+          <label for="phone">Phone number</label>
+          <input type="text" id="phone" class="is-mono" inputmode="numeric" placeholder="01XXXXXXXXX" maxlength="11" autocomplete="tel" required>
+          <div class="field-hint">11 digits. Used to find you — never shown to other users.</div>
+        </div>
+
+        <div class="field">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="e.g. alice_w" maxlength="30" autocomplete="username" required>
+          <div class="field-hint">3–30 characters: letters, numbers, underscore.</div>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="At least 6 characters" autocomplete="new-password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="submit-btn">Create account</button>
+      </form>
+
+      <p class="auth-switch">Already have an account? <a href="/login">Log in</a></p>
+    </div>
+  </div>
+
+  <div class="auth-art">
+    <div class="auth-art-content">
+      <h2>Add friends with just their number.</h2>
+      <p>Search, send a request, and they decide — accept and start chatting, or quietly ignore it. Your number stays yours.</p>
+    </div>
+  </div>
+</div>
+
+<script src="/js/api.js"></script>
+<script src="/js/register.js"></script>
+</body>
+</html>
