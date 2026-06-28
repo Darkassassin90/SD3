@@ -1,0 +1,694 @@
+/* ==========================================================================
+   Simple Messaging Platform — Design Tokens & Shared Styles
+
+   Concept: private, 1:1 connection. The recurring motif is "the thread" —
+   a dotted line linking two points — used as a divider and as the literal
+   connector between avatars in chat headers.
+
+   Palette:
+     --ink     #16213D  primary text
+     --paper   #FAF9F6  app background
+     --teal    #0E7C7B  brand / sent bubbles / primary actions
+     --coral   #FF6B5E  requests / notifications / destructive-ish accents
+     --mist    #E9EDEF  surfaces / received bubbles
+     --slate   #8A94A6  muted text, borders
+
+   Type:
+     Display : Space Grotesk  (headlines, wordmark)
+     Body/UI : Inter          (everything interactive/readable)
+     Utility : IBM Plex Mono  (timestamps, phone numbers, counters)
+   ========================================================================== */
+
+:root {
+  --ink: #16213d;
+  --paper: #faf9f6;
+  --teal: #0e7c7b;
+  --teal-dark: #0a5d5c;
+  --coral: #ff6b5e;
+  --coral-dark: #e85546;
+  --mist: #e9edef;
+  --mist-dark: #d9e0e3;
+  --slate: #8a94a6;
+  --slate-light: #c4cad4;
+  --white: #ffffff;
+  --success: #2bb673;
+
+  --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --shadow-sm: 0 1px 2px rgba(22, 33, 61, 0.06);
+  --shadow-md: 0 8px 24px rgba(22, 33, 61, 0.10);
+  --shadow-lg: 0 20px 50px rgba(22, 33, 61, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+}
+
+input, textarea {
+  font-family: var(--font-body);
+}
+
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* -------------------------------------------------------------------- */
+/* Wordmark + thread motif                                              */
+/* -------------------------------------------------------------------- */
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--ink);
+}
+
+.wordmark-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--coral);
+  flex-shrink: 0;
+}
+
+.thread-divider {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 14px;
+}
+.thread-divider span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--slate-light);
+}
+
+/* -------------------------------------------------------------------- */
+/* Buttons                                                              */
+/* -------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  white-space: nowrap;
+}
+.btn:active { transform: translateY(1px); }
+
+.btn-primary {
+  background: var(--teal);
+  color: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover { background: var(--teal-dark); box-shadow: var(--shadow-md); }
+.btn-primary:disabled { background: var(--slate-light); cursor: not-allowed; box-shadow: none; }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--mist-dark);
+}
+.btn-ghost:hover { border-color: var(--teal); color: var(--teal-dark); }
+
+.btn-coral {
+  background: var(--coral);
+  color: var(--white);
+}
+.btn-coral:hover { background: var(--coral-dark); }
+
+.btn-text {
+  background: transparent;
+  color: var(--slate);
+  padding: 0.5rem 0.75rem;
+}
+.btn-text:hover { color: var(--ink); }
+
+.btn-sm {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.85rem;
+  border-radius: var(--radius-sm);
+}
+
+.btn-block { width: 100%; }
+
+/* -------------------------------------------------------------------- */
+/* Forms                                                                */
+/* -------------------------------------------------------------------- */
+
+.field {
+  margin-bottom: 1.1rem;
+}
+
+.field label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--slate);
+  margin-bottom: 0.4rem;
+}
+
+.field input {
+  width: 100%;
+  padding: 0.8rem 0.95rem;
+  border: 1.5px solid var(--mist-dark);
+  border-radius: var(--radius-sm);
+  font-size: 0.98rem;
+  background: var(--white);
+  color: var(--ink);
+  transition: border-color 0.15s ease;
+}
+
+.field input::placeholder { color: var(--slate-light); }
+.field input:focus { border-color: var(--teal); outline: none; }
+.field input.is-mono { font-family: var(--font-mono); letter-spacing: 0.02em; }
+
+.field-hint {
+  font-size: 0.78rem;
+  color: var(--slate);
+  margin-top: 0.35rem;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  color: var(--slate);
+}
+.checkbox-row input { width: 16px; height: 16px; accent-color: var(--teal); }
+
+.form-error {
+  background: #fdeceb;
+  border: 1px solid #ffd2cc;
+  color: var(--coral-dark);
+  font-size: 0.85rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+  display: none;
+}
+.form-error.visible { display: block; }
+
+.form-success {
+  background: #e9f7ef;
+  border: 1px solid #bfe8d2;
+  color: #1d8a52;
+  font-size: 0.85rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+  display: none;
+}
+.form-success.visible { display: block; }
+
+/* -------------------------------------------------------------------- */
+/* Auth pages (register / login)                                       */
+/* -------------------------------------------------------------------- */
+
+.auth-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.auth-art {
+  background: var(--ink);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.auth-art-content {
+  position: relative;
+  z-index: 2;
+  color: var(--paper);
+  padding: 3rem;
+  max-width: 420px;
+}
+
+.auth-art-content h2 {
+  font-size: 1.9rem;
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+}
+
+.auth-art-content p {
+  color: #b7c0d6;
+  font-size: 0.98rem;
+}
+
+.auth-form-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 4rem;
+}
+
+.auth-form-side .top-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2.5rem;
+}
+
+.auth-card { max-width: 380px; width: 100%; margin: 0 auto; }
+
+.auth-card h1 {
+  font-size: 1.7rem;
+  margin-bottom: 0.4rem;
+}
+
+.auth-subtitle {
+  color: var(--slate);
+  font-size: 0.92rem;
+  margin-bottom: 1.8rem;
+}
+
+.auth-switch {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--slate);
+}
+.auth-switch a { color: var(--teal); font-weight: 600; }
+.auth-switch a:hover { text-decoration: underline; }
+
+@media (max-width: 900px) {
+  .auth-shell { grid-template-columns: 1fr; }
+  .auth-art { display: none; }
+  .auth-form-side { padding: 2rem 1.5rem; }
+}
+
+/* -------------------------------------------------------------------- */
+/* App shell (dashboard + chat share this layout)                      */
+/* -------------------------------------------------------------------- */
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  background: var(--white);
+  border-right: 1px solid var(--mist);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sidebar-header {
+  padding: 1.25rem 1.25rem 1rem;
+  border-bottom: 1px solid var(--mist);
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-family: var(--font-display);
+  flex-shrink: 0;
+  font-size: 1rem;
+  position: relative;
+}
+
+.avatar.lg { width: 56px; height: 56px; font-size: 1.3rem; }
+.avatar.coral { background: var(--coral); }
+
+.presence-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--slate-light);
+  border: 2px solid var(--white);
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+}
+.presence-dot.online { background: var(--success); }
+
+.profile-meta { overflow: hidden; }
+.profile-meta .name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.profile-meta .sub {
+  font-size: 0.78rem;
+  color: var(--slate);
+  font-family: var(--font-mono);
+}
+
+.sidebar-tabs {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.9rem 1.25rem 0;
+}
+.sidebar-tab {
+  flex: 1;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--slate);
+  padding: 0.55rem 0.3rem;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  border-bottom: 2px solid transparent;
+  position: relative;
+}
+.sidebar-tab.active { color: var(--teal-dark); border-color: var(--teal); }
+.sidebar-tab .badge {
+  position: absolute;
+  top: 2px; right: 18%;
+  background: var(--coral);
+  color: var(--white);
+  font-size: 0.65rem;
+  font-weight: 700;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+.sidebar-tab .badge.visible { display: flex; }
+
+.sidebar-search {
+  padding: 0.9rem 1.25rem;
+  border-bottom: 1px solid var(--mist);
+}
+
+.sidebar-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.5rem 0.6rem;
+}
+
+.empty-note {
+  color: var(--slate);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.friend-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.7rem 0.65rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+.friend-row:hover { background: var(--paper); }
+.friend-row.active { background: var(--mist); }
+
+.friend-row .name { font-weight: 600; font-size: 0.92rem; }
+.friend-row .status { font-size: 0.76rem; color: var(--slate); }
+.friend-row .status.online { color: var(--success); }
+
+.request-row {
+  padding: 0.8rem 0.65rem;
+  border-radius: var(--radius-sm);
+}
+.request-row .top { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.6rem; }
+.request-row .name { font-weight: 600; font-size: 0.92rem; }
+.request-row .when { font-size: 0.74rem; color: var(--slate); font-family: var(--font-mono); }
+.request-actions { display: flex; gap: 0.5rem; padding-left: 52px; }
+
+.sidebar-footer {
+  padding: 0.9rem 1.25rem;
+  border-top: 1px solid var(--mist);
+}
+
+/* -------------------------------------------------------------------- */
+/* Main panel — dashboard empty state / chat conversation               */
+/* -------------------------------------------------------------------- */
+
+.main-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--paper);
+}
+
+.panel-placeholder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--slate);
+  padding: 2rem;
+}
+.panel-placeholder h2 { color: var(--ink); margin-bottom: 0.5rem; font-size: 1.3rem; }
+.panel-placeholder p { max-width: 320px; font-size: 0.92rem; }
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--mist);
+  background: var(--white);
+}
+.chat-header .who { display: flex; align-items: center; gap: 0.8rem; }
+.chat-header .name { font-weight: 700; }
+.chat-header .status { font-size: 0.78rem; color: var(--slate); }
+.chat-header .status.online { color: var(--success); }
+.chat-header .back-link {
+  display: none;
+  color: var(--slate);
+  font-size: 1.3rem;
+  margin-right: 0.5rem;
+}
+
+.message-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.day-divider {
+  text-align: center;
+  font-size: 0.74rem;
+  color: var(--slate);
+  margin: 0.8rem 0;
+  font-family: var(--font-mono);
+}
+
+.bubble-row {
+  display: flex;
+  max-width: 70%;
+}
+.bubble-row.mine { align-self: flex-end; justify-content: flex-end; }
+.bubble-row.theirs { align-self: flex-start; }
+
+.bubble {
+  padding: 0.65rem 0.95rem;
+  border-radius: var(--radius-md);
+  font-size: 0.94rem;
+  line-height: 1.4;
+  word-wrap: break-word;
+  box-shadow: var(--shadow-sm);
+}
+.bubble-row.mine .bubble {
+  background: var(--teal);
+  color: var(--white);
+  border-bottom-right-radius: 4px;
+}
+.bubble-row.theirs .bubble {
+  background: var(--white);
+  color: var(--ink);
+  border-bottom-left-radius: 4px;
+}
+.bubble .time {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  margin-top: 0.3rem;
+  opacity: 0.7;
+}
+
+.typing-indicator {
+  font-size: 0.78rem;
+  color: var(--slate);
+  padding: 0 1.5rem 0.5rem;
+  font-style: italic;
+  min-height: 1.2em;
+}
+
+.composer {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.7rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--mist);
+  background: var(--white);
+}
+.composer textarea {
+  flex: 1;
+  resize: none;
+  border: 1.5px solid var(--mist-dark);
+  border-radius: var(--radius-md);
+  padding: 0.7rem 1rem;
+  font-size: 0.95rem;
+  max-height: 120px;
+  font-family: var(--font-body);
+  color: var(--ink);
+}
+.composer textarea:focus { border-color: var(--teal); outline: none; }
+.composer .send-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s ease;
+}
+.composer .send-btn:hover { background: var(--teal-dark); }
+.composer .send-btn:disabled { background: var(--slate-light); cursor: not-allowed; }
+
+/* -------------------------------------------------------------------- */
+/* Mobile responsiveness for app shell                                  */
+/* -------------------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .app-shell { grid-template-columns: 1fr; }
+  .app-shell.show-main .sidebar { display: none; }
+  .app-shell:not(.show-main) .main-panel { display: none; }
+  .chat-header .back-link { display: inline-flex; }
+  .bubble-row { max-width: 85%; }
+}
+
+/* -------------------------------------------------------------------- */
+/* Toasts                                                               */
+/* -------------------------------------------------------------------- */
+
+.toast-stack {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  z-index: 999;
+}
+.toast {
+  background: var(--ink);
+  color: var(--white);
+  padding: 0.75rem 1.1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  box-shadow: var(--shadow-md);
+  animation: toast-in 0.2s ease;
+  max-width: 320px;
+}
+.toast.error { background: var(--coral-dark); }
+.toast.success { background: var(--success); }
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* -------------------------------------------------------------------- */
+/* Spinner                                                              */
+/* -------------------------------------------------------------------- */
+
+.spinner {
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: var(--white);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+.spinner.dark {
+  border: 2px solid rgba(22,33,61,0.15);
+  border-top-color: var(--ink);
+}
+@keyframes spin { to { transform: rotate(360deg); } }
